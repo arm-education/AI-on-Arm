@@ -3,13 +3,13 @@
 set -e
 
 #############################################################################
-# STEP 1: Update and upgrade the system
+# STEP 1: Update and (optonally) upgrade the system
 #############################################################################
 echo "======================================================================="
 echo "  1. Update and upgrade the system"
 echo "======================================================================="
 sudo apt update
-sudo apt upgrade -y
+# sudo apt upgrade -y
 
 #############################################################################
 # STEP 2: Install essential development packages
@@ -88,12 +88,12 @@ python3.12 -m pip install --upgrade pip
 echo "======================================================================="
 echo "  8. Install required Python packages"
 echo "======================================================================="
-python3.12 -m pip install --upgrade \
+python3.12 -m pip install --upgrade --trusted-host archive1.piwheels.org \
     numpy \
     matplotlib \
     pandas \
     torch \
-    transformers \
+    transformers==4.53.3 \
     jupyterlab \
     ipykernel \
     ipywidgets \
