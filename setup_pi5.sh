@@ -98,7 +98,8 @@ python3.12 -m pip install --upgrade --trusted-host archive1.piwheels.org \
     ipykernel \
     ipywidgets \
     seaborn \
-    sentencepiece
+    sentencepiece \
+    mistral-common
 
 #############################################################################
 echo "======================================================================="
