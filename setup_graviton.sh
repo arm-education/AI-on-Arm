@@ -3,15 +3,13 @@
 set -e
 
 echo "======================================================================="
-echo "  1. Update and upgrade the system (non-interactive)"
+echo "  0. Update package lists"
 echo "======================================================================="
-export DEBIAN_FRONTEND=noninteractive
-export NEEDRESTART_MODE=a          # or NEEDRESTART_SUSPEND=1
-sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo apt update
+
 
 echo "======================================================================="
-echo "  2. Add essential development packages"
+echo "  1. Add essential development packages"
 echo "======================================================================="
 sudo apt install -y \
     wget build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev \
@@ -21,7 +19,7 @@ sudo apt install -y \
     libelf-dev cmake clang llvm llvm-dev
 
 echo "======================================================================="
-echo "  3. Verify perf installation"
+echo "  2. Verify perf installation"
 echo "======================================================================="
 if command -v perf >/dev/null 2>&1; then
     echo "perf installed successfully."
@@ -31,19 +29,19 @@ else
 fi
 
 echo "======================================================================="
-echo "  4. Add deadsnakes PPA for Python 3.12"
+echo "  3. Add deadsnakes PPA for Python 3.12"
 echo "======================================================================="
 sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt-get update
 
 echo "======================================================================="
-echo "  5. Install Python 3.12 and related tools"
+echo "  4. Install Python 3.12 and related tools"
 echo "======================================================================="
 sudo apt install -y gcc g++ build-essential google-perftools \
     python3.12 python3.12-venv python3.12-dev
 
 echo "======================================================================="
-echo "  6. Create (or recreate) Python 3.12 virtual environment 'graviton_env'"
+echo "  5. Create (or recreate) Python 3.12 virtual environment 'graviton_env'"
 echo "======================================================================="
 if [ -d graviton_env ]; then
     echo "Removing existing virtual environment 'graviton_env'..."
@@ -53,18 +51,18 @@ fi
 python3.12 -m venv graviton_env
 
 echo "======================================================================="
-echo "  7. Activate the virtual environment"
+echo "  6. Activate the virtual environment"
 echo "======================================================================="
 # shellcheck disable=SC1091
 source graviton_env/bin/activate
 
 echo "======================================================================="
-echo "  8. Upgrade pip"
+echo "  7. Upgrade pip"
 echo "======================================================================="
 python3.12 -m pip install --upgrade pip
 
 echo "======================================================================="
-echo "  9. Install Python packages from graviton_requirements.txt"
+echo "  8. Install Python packages from graviton_requirements.txt"
 echo "======================================================================="
 if [ -f "graviton_requirements.txt" ]; then
     python3.12 -m pip install -r graviton_requirements.txt
