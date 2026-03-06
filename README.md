@@ -122,6 +122,5 @@ Additionally to run the laboratory exercises, we assume you have access to a Ras
 - To complete this course you are required to have access to a Raspberry Pi 5, for the cloud sections, AWS can be utilised. 
 - For Lab 2 and 3 make sure to terminate the EC2 instance when you're done to avoid unnecessary charges.
 
-**Happy learning!**
 
 **Note:** The primary content writer for this course is an AI researcher, [Oliver Grainge](https://github.com/OliverGrainge).
